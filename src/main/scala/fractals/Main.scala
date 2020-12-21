@@ -1,6 +1,7 @@
 package fractals
 
-import java.awt.image.BufferedImage
+import java.awt.Color
+import java.awt.image.{BufferedImage, ColorModel, ComponentColorModel}
 import java.io.File
 import javax.imageio.ImageIO
 
@@ -15,13 +16,15 @@ object Main extends App {
     val image = new BufferedImage(Width, Height, BufferedImage.TYPE_INT_RGB)
 
     // Initial attempt at writing image data
-    // TODO - review RGB parameter
     val coords = for {
       x <- 0 until Width
       y <- 0 until Height
     } yield(x, y)
 
-    coords.foreach(p => image.setRGB(p._1, p._2, 1000))
+    val color = new Color(255, 255, 255)
+    println(s"color: $color")
+
+    coords.foreach(p => image.setRGB(p._1, p._2, color.getRGB))
 
     val imageFile = new File("image.png")
     ImageIO.write(image, PngFormat, imageFile)
