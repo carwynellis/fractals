@@ -1,7 +1,7 @@
 package fractals
 
 import java.awt.Color
-import java.awt.image.{BufferedImage, ColorModel, ComponentColorModel}
+import java.awt.image.BufferedImage
 import java.io.File
 import javax.imageio.ImageIO
 
@@ -21,15 +21,18 @@ object Main extends App {
       y <- 0 until Height
     } yield(x, y)
 
-    val color = new Color(255, 255, 255)
-    println(s"color: $color")
-
-    coords.foreach(p => image.setRGB(p._1, p._2, color.getRGB))
+    coords.foreach(p => image.setRGB(p._1, p._2, computeColor(p._1, p._2).getRGB))
 
     val imageFile = new File("image.png")
     ImageIO.write(image, PngFormat, imageFile)
   }
   catch {
     case e: Exception => println(s"Caught exception: $e")
+  }
+
+  private def computeColor(x: Int, y: Int) = {
+    val intensity = Math.ceil((y/Height.toDouble)*255).toInt
+    println(s"intensity: $intensity")
+    new Color(intensity, intensity, intensity)
   }
 }
