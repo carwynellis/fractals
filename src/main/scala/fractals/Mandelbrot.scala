@@ -30,10 +30,10 @@ class Mandelbrot(
   }
 
   // Map pixel x value to point in mandelbrot search space
-  def scaleX(x: Int) = ((x.toDouble/width)*4) - 2
+  def scaleX(x: Int) = ((x.toDouble/(width-1))*4) - 2
 
   // Map pixel y component to point in mandelbrot search space
-  def scaleY(y: Int) = 2 - ((y.toDouble/height)*4)
+  def scaleY(y: Int) = 2 - ((y.toDouble/(height-1))*4)
 
 }
 

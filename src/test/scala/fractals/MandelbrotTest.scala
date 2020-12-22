@@ -19,4 +19,20 @@ class MandelbrotTest extends AnyFunSuite with Matchers {
     underTest.calculate(1, 2) shouldBe 2
   }
 
+  test("scaleX should return correct minimum value") {
+    underTest.scaleX(0) shouldBe -2
+  }
+
+  test("scaleX should return correct maximum value") {
+    underTest.scaleX(8) shouldBe 2
+  }
+
+  test("scaleY should return correct minimum value") {
+    underTest.scaleY(8) shouldBe -2
+  }
+
+  test("scaleY should return correct maximum value") {
+    underTest.scaleY(0) shouldBe 2
+  }
+
 }
