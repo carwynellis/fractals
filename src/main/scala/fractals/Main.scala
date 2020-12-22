@@ -7,8 +7,8 @@ import javax.imageio.ImageIO
 
 object Main extends App {
 
-  private val Width = 640
-  private val Height = 480
+  private val Width = 1024
+  private val Height = 768
   private val PngFormat = "png" // TODO - are there constants for these?
 
   // Initial test bed for image writing code
@@ -32,7 +32,6 @@ object Main extends App {
 
   private def computeColor(x: Int, y: Int) = {
     val intensity = Math.ceil((y/Height.toDouble)*255).toInt
-    println(s"intensity: $intensity")
     new Color(intensity, intensity, intensity)
   }
 }
