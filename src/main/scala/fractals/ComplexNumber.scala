@@ -10,9 +10,18 @@ package fractals
  */
 case class ComplexNumber(r: Double, i: Double) {
 
-    // TODO - this looks a little like the vec3 math - review
-    def square: Double = (r * r) + (i * i)
+    def absSquared: Double = (r * r) + (i * i)
 
-    def abs: Double = math.sqrt(square)
+    def abs: Double = math.sqrt(absSquared)
+
+    def +(that: ComplexNumber) = ComplexNumber(
+        r = this.r + that.r,
+        i = this.i + that.i
+    )
+
+    def *(that: ComplexNumber) = ComplexNumber(
+        r = (this.r * that.r) - (this.i * that.i),
+        i = (this.r * that.i) + (this.i * that.r)
+    )
 
 }
