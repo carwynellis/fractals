@@ -7,10 +7,10 @@ import javax.imageio.ImageIO
 
 object Main extends App {
 
-  private val Width = 1024
-  private val Height = 768
+  private val Width = 4000
+  private val Height = 4000
   private val PngFormat = "png" // TODO - are there constants for these?
-  private val Iterations = 1000
+  private val Iterations = 500
 
   private val mandelbrot = Mandelbrot(
     iterations = Iterations, // TODO - cheating for now
