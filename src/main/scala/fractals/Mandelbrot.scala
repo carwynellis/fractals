@@ -1,5 +1,7 @@
 package fractals
 
+import scala.annotation.tailrec
+
 // TODO - consider defining a common trait if more algorithms are defined
 // TODO - make the radius e.g ±2 configurable to support zoom
 class Mandelbrot(
@@ -9,15 +11,22 @@ class Mandelbrot(
 
   def calculate(x: Int, y: Int) = {
 
-    // TODO - consider using extension methods
     val px = scaleX(x)
     val py = scaleY(y)
 
-    def loop(z: Double, i: Int): Int = {
-      0
+    val c = ComplexNumber(px, py)
+
+    @tailrec
+    def loop(z: ComplexNumber, i: Int): Int = {
+      if (i > iterations) i
+      else {
+        val z1 = (z * z) + c
+        if (z1.abs > 2) i
+        else loop(z1, i + 1)
+      }
     }
 
-    loop(0, 0)
+    loop(ComplexNumber(0, 0), 1)
   }
 
   // Map pixel x value to point in mandelbrot search space
