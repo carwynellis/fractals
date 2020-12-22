@@ -10,6 +10,13 @@ object Main extends App {
   private val Width = 1024
   private val Height = 768
   private val PngFormat = "png" // TODO - are there constants for these?
+  private val Iterations = 1000
+
+  private val mandelbrot = Mandelbrot(
+    iterations = Iterations, // TODO - cheating for now
+    width = Width,
+    height = Height
+  )
 
   // Initial test bed for image writing code
   try {
@@ -30,8 +37,14 @@ object Main extends App {
     case e: Exception => println(s"Caught exception: $e")
   }
 
+//  private def computeColor(x: Int, y: Int) = {
+//    val intensity = Math.ceil((y/Height.toDouble)*255).toInt
+//    new Color(intensity, intensity, intensity)
+//  }
+
   private def computeColor(x: Int, y: Int) = {
-    val intensity = Math.ceil((y/Height.toDouble)*255).toInt
+    val iterations = mandelbrot.calculate(x, y)
+    val intensity = 255 - ((iterations.toDouble/Iterations)*255).toInt
     new Color(intensity, intensity, intensity)
   }
 }
